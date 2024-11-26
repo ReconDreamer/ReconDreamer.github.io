@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>ReconDreamer</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="840">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ReconDreamer: World Models Are Effective Data Machines for 4D Driving Scene Representation" />
+    <meta property="og:description" content="     
+     Closed-loop simulation is essential for advancing end-to-end autonomous driving systems. Contemporary sensor simulation methods, such as NeRF and 3DGS, rely predominantly on conditions closely aligned with training data distributions, which are largely confined to forward-driving scenarios. Consequently, these methods face limitations when rendering complex maneuvers (e.g., lane change, acceleration, deceleration). Recent advancements in autonomous-driving world models have demonstrated the potential to generate diverse driving videos. However, these approaches remain constrained to 2D video generation, inherently lacking the spatiotemporal coherence required to capture intricacies of dynamic driving environments.
+                            In this paper, we introduce <em>ReconDreamer</em>, which enhances 4D driving scene representation leveraging world model priors.
+                            Specifically, we utilize the world model as a data machine to synthesize novel trajectory videos based on real-world driving data. Notably, we explicitly leverage structured conditions to control the spatial-temporal consistency of foreground and background elements, thus the generated data adheres closely to traffic constraints. To our knowledge, <em>ReconDreamer</em> is the first to utilize video generation models for improving 4D reconstruction in driving scenarios.
+                            Experimental results reveal that <em>ReconDreamer</em> significantly enhances generation quality under novel trajectory views, achieving a relative improvement in FID by 24.5%, 39.0%, and 10.5% compared to PVG, S<sup>3</sup>Gaussian, and Deformable-GS. Moreover, <em>ReconDreamer</em> markedly enhances the spatiotemporal coherence of driving agents, which is verified by a comprehensive user study and the relative increases of 20.3%, 42.0%, and 13.7% in the NTA-IoU metric.
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ReconDreamer: World Models Are Effective Data Machines for 4D Driving Scene Representation" />
+    <meta name="twitter:description" content="     
+     Closed-loop simulation is essential for advancing end-to-end autonomous driving systems. Contemporary sensor simulation methods, such as NeRF and 3DGS, rely predominantly on conditions closely aligned with training data distributions, which are largely confined to forward-driving scenarios. Consequently, these methods face limitations when rendering complex maneuvers (e.g., lane change, acceleration, deceleration). Recent advancements in autonomous-driving world models have demonstrated the potential to generate diverse driving videos. However, these approaches remain constrained to 2D video generation, inherently lacking the spatiotemporal coherence required to capture intricacies of dynamic driving environments.
+                            In this paper, we introduce <em>ReconDreamer</em>, which enhances 4D driving scene representation leveraging world model priors.
+                            Specifically, we utilize the world model as a data machine to synthesize novel trajectory videos based on real-world driving data. Notably, we explicitly leverage structured conditions to control the spatial-temporal consistency of foreground and background elements, thus the generated data adheres closely to traffic constraints. To our knowledge, <em>ReconDreamer</em> is the first to utilize video generation models for improving 4D reconstruction in driving scenarios.
+                            Experimental results reveal that <em>ReconDreamer</em> significantly enhances generation quality under novel trajectory views, achieving a relative improvement in FID by 24.5%, 39.0%, and 10.5% compared to PVG, S<sup>3</sup>Gaussian, and Deformable-GS. Moreover, <em>ReconDreamer</em> markedly enhances the spatiotemporal coherence of driving agents, which is verified by a comprehensive user study and the relative increases of 20.3%, 42.0%, and 13.7% in the NTA-IoU metric.
+    />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/video_comparison.js"></script>
+    <script src="js/app.js"></script>
+
+    <style>
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        /* 设置段落文本对齐方式 */
+        p {
+            text-align: justify; /* 使段落文本两端对齐 */
+            text-justify: inter-word; /* 改进英文对齐，增加单词间隔 */
+        }
+        /* .container {
+            margin-left: -100px;
+        } */
+        .image-row {
+            display: flex;
+            justify-content: center;
+        }
+        .figure-caption {
+              margin-top: 3px; /* 顶部间距 */
+              margin-bottom: -22px; /* 底部间距，你可以按需调整这个值 */
+              font-size: 14px;
+              text-align: center;
+            }
+
+        .image-wrapper {
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .caption-row {
+            align-items: flex-end;
+        }
+
+        .caption-row .image-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .caption-row .image-wrapper p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <b>ReconDreamer:</b>Crafting World Models for Driving Scene Reconstruction  via Online Restoration </br>            
+            <small>
+                <!-- cvpr -->
+            </small>
+            </h2>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        Guosheng Zhao<sup>1,2</sup>
+                    </li>
+                    <li>
+                        Chaojun Ni<sup>1,4</sup>
+                    </li>
+                    <li>
+                        Xiaofeng Wang<sup>1,2</sup>
+                    </li>
+                    <li>
+                        Zheng Zhu<sup>1</sup><span class="envelope">&#9993;</span>
+                    </li>
+                </ul>
+                <ul class="list-inline">
+                    <li>
+                      Xueyang Zhang<sup>3</sup>
+                    </li>
+                    <li>
+                      Yida Wang<sup>3</sup>
+                    </li>
+                    <li>
+                        Guan Huang<sup>1</sup>
+                    </li>
+                    <li>
+                        Xinze Chen<sup>1</sup>
+                    </li>
+                    <li>
+                        Boyuan Wang<sup>1,2</sup>
+                    </li>
+                </ul>
+                <ul class="list-inline">
+                    <li>
+                      Youyi Zhang<sup>5</sup>
+                    </li>
+                    <li>
+                        Wenjun Mei<sup>4</sup>
+                    </li>
+                    <li>
+                        Xingang Wang<sup>2</sup><span class="envelope">&#9993;</span>
+                    </li>
+                </ul>
+                
+                <ul class="list-inline">
+                    <li>
+                        <sup>1</sup> GigaAI
+                    </li>
+                    <li>
+                        <sup>2</sup> Institute of Automation, Chinese Academy of Sciences
+                    </li>
+                </ul>
+                <ul class="list-inline">
+                    <li>
+                      <sup>3</sup> Li Auto Inc.
+                    </li>
+                    <li>
+                        <sup>4</sup> Peking University
+                    </li>
+                    <li>
+                        <sup>5</sup> Technical University of Munich
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <ul class="nav nav-pills nav-justified" style="margin-top:10px">
+                <li>
+                    <a href=https://arxiv.org/abs/2410.13571>
+                    <image src="./img/DriveDreamer4D-6_00.png" height="60px"></image>
+                        <h4><strong>Paper</strong></h4>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/GigaAI-research/ReconDreamer">
+                    <image src="img/github.png" height="60px"></image>
+                        <h4><strong>Code</strong></h4>
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row " style="margin-top:20px">
+            <div class="col-md-8 col-md-offset-2 ">
+                <img src="./img/intro_v13_00.png" width="100%" >
+                </img>
+            </div>
+            <div class="col-md-8 col-md-offset-2 ">
+                <p class="text-center ">
+                    Dynamic driving scene reconstruction methods, such as DriveDreamer4D and Street Gaussians, encounter significant challenges when rendering larger maneuvers (e.g., multi-lane shifts). In contrast, the proposed <b>ReconDreamer</b> significantly improves rendering quality via incrementally integrating world model knowledge.
+                </p>
+            </div>
+            <div class="col-md-8 col-md-offset-2 ">
+                <img src="img/ReconDreamer_v4_00.png" width="100%" >
+                </img>
+            </div>
+            <div class="col-md-8 col-md-offset-2 ">
+                <p class="text-center ">
+                    The overall framework of <b>ReconDreamer</b>. During the training of the dynamic driving scene reconstruction, we begin by rendering novel trajectory views. These rendered videos are subsequently processed by the <b>DriveRestorer</b> to restore their quality. Then these restored videos, together with the original video, are employed to optimize the reconstruction model. This iterative process continues until the reconstruction model converges.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify ">
+                    <body>
+                        <p>
+                            Closed-loop Simulation is Crucial for End-to-end Autonomous Driving. Existing sensor simulation methods (e.g., NeRF and 3DGS) reconstruct driving scenes based on conditions that closely mirror training data distributions. However, these methods struggle with rendering novel trajectories, such as lane changes. Recent work, DriveDreamer4D, has demonstrated that integrating world model knowledge alleviates these issues. Although the training-free integration approach is efficient, it still struggles to render larger maneuvers, such as multi-lane shifts.
+                            Therefore, we introduce <strong>ReconDreamer</strong>, which enhances driving scene reconstruction through incremental integration of world model knowledge. Specifically, based on the world model, <em>DriveRestorer</em> is proposed to mitigate ghosting artifacts via online restoration. Additionally, we propose the progressive data update strategy to ensure high-quality rendering for larger maneuvers. Notably, <strong>ReconDreamer</strong> is the first method to effectively render in large maneuvers (e.g., across multiple lanes, spanning up to 6 meters).
+                            Additionally, experimental results demonstrate that <strong>ReconDreamer</strong> outperforms Street Gaussians in the NTA-IoU, NTL-IoU, and FID, with a relative improvement by 24.87%, 6.72%, and 29.97%. Furthermore, <strong>ReconDreamer</strong> surpasses DriveDreamer4D with PVG during large maneuver rendering, as verified by a relative improvement of 195.87% in the NTA-IoU metric and a comprehensive user study.
+                        </body>
+                        </p>
+                    </body>
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <h3>
+                    Comparisons
+                </h3>
+                <div class="tabs">
+                    <div class="tab active" id='compare_video1' onclick="showComparison(this)">Lane Shift 3m</div>
+                    <div class="tab" id='compare_image1' onclick="showComparison(this)">Lane Shift 6m</div>
+                    <div class="tab" id='compare_image2' onclick="showComparison(this)">Lane Change</div>
+                </div>
+
+                <div>
+                <div class="image-row" id="1">
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_video1Div" style="display: inline;">
+                            <figcaption id='seq25_compare_video1Div' class="text-center mt-2">
+                                <b>Original Trajectory</b>
+                                </figcaption>
+
+                            <video class="video" id="seq25_compare_video1" loop playsinline autoPlay muted 
+                                src="supply1/18_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_video1Merge"></canvas>
+                        </div>
+                        
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_video1Div" style="display: inline;">
+                            <figcaption id="seq06_compare_video1Div" class="text-center mt-2">
+                                <b>Novel Trajectory</b>
+                             </figcaption>
+
+                            <video class="video" id="seq06_compare_video1" loop playsinline autoPlay muted 
+                                src="supply1/combined_18_3.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_video1Merge"></canvas>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+                <div class="image-row" >
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq25_compare_video1_1" loop playsinline autoPlay muted 
+                                src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_video1_1Merge"></canvas>
+                        </div>
+                        
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq06_compare_video1_1" loop playsinline autoPlay muted 
+                                src="supply1/combined_164_3.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_video1_1Merge"></canvas>
+                        </div>
+                       
+                    </div>
+                </div>
+                                
+                <div class="image-row" >
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq25_compare_video1_2" loop playsinline autoPlay muted 
+                                src="supply1/27_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_video1_2Merge"></canvas>
+                        </div>
+                        
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq06_compare_video1_2" loop playsinline autoPlay muted 
+                                src="supply1/combined_27_3.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_video1_2Merge"></canvas>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+                <div class="image-row" >
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq25_compare_video1_3" loop playsinline autoPlay muted 
+                                src="supply1/5_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_video1_3Merge"></canvas>
+                        </div>
+                        
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq06_compare_video1_3" loop playsinline autoPlay muted 
+                                src="supply1/combined_05_3.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_video1_3Merge"></canvas>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                </div>
+                
+                
+                <div>
+                <div class="image-row">
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_image1Div" style="display: none;">
+                            <figcaption id='seq25_compare_video1Div' class="text-center mt-2">
+                                <b>Original Trajectory</b>
+                            </figcaption>
+
+                            <video class="video" id="seq25_compare_image1" loop playsinline autoPlay muted 
+                                src="supply1/18_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_image1Merge"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_image1Div" style="display: none;">
+                            <figcaption id="seq06_compare_video1Div" class="text-center mt-2">
+                                <b>Novel Trajectory</b>
+                             </figcaption>
+                            <video class="video" id="seq06_compare_image1" loop playsinline autoPlay muted 
+                                src="supply1/combined_18_6.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_image1Merge"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-row">
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq25_compare_image1_1" loop playsinline autoPlay muted 
+                                src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_image1_1Merge"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq06_compare_image1_1" loop playsinline autoPlay muted 
+                                src="supply1/combined_164_6.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_image1_1Merge"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-row">
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq25_compare_image1_2" loop playsinline autoPlay muted 
+                                src="supply1/27_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_image1_2Merge"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq06_compare_image1_2" loop playsinline autoPlay muted 
+                                src="supply1/combined_27_6.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_image1_2Merge"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-row">
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq25_compare_image1_3" loop playsinline autoPlay muted 
+                                src="supply1/5_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_image1_3Merge"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq06_compare_image1_3" loop playsinline autoPlay muted 
+                                src="supply1/combined_05_6.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_image1_3Merge"></canvas>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div>
+                    <div class="image-row">
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq25_compare_image2Div" style="display: none;">
+                                <figcaption id='seq25_compare_video1Div' class="text-center mt-2">
+                                    <b>Original Trajectory</b>
+                                </figcaption>
+    
+                                <video class="video" id="seq25_compare_image2" loop playsinline autoPlay muted 
+                                    src="supply1/18_gtt.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq25_compare_image2Merge"></canvas>
+                            </div>
+                        </div>
+    
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq06_compare_image2Div" style="display: none;">
+                                <figcaption id="seq06_compare_video1Div" class="text-center mt-2">
+                                    <b>Novel Trajectory</b>
+                                 </figcaption>
+                                <video class="video" id="seq06_compare_image2" loop playsinline autoPlay muted 
+                                    src="supply1/combined_18_9.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq06_compare_image2Merge"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-row">
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq25_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq25_compare_image2_1" loop playsinline autoPlay muted 
+                                    src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq25_compare_image2_1Merge"></canvas>
+                            </div>
+                        </div>
+    
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq06_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq06_compare_image2_1" loop playsinline autoPlay muted 
+                                    src="supply1/combined_164_9.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq06_compare_image2_1Merge"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-row">
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq25_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq25_compare_image2_2" loop playsinline autoPlay muted 
+                                    src="supply1/27_gtt.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq25_compare_image2_2Merge"></canvas>
+                            </div>
+                        </div>
+    
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq06_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq06_compare_image2_2" loop playsinline autoPlay muted 
+                                    src="supply1/combined_27_9.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq06_compare_image2_2Merge"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-row">
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq25_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq25_compare_image2_3" loop playsinline autoPlay muted 
+                                    src="supply1/5_gtt.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq25_compare_image2_3Merge"></canvas>
+                            </div>
+                        </div>
+    
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq06_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq06_compare_image2_3" loop playsinline autoPlay muted 
+                                    src="supply1/combined_05_9.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq06_compare_image2_3Merge"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Comparisons
+                </h3>
+                <div class="tabs">
+                    <div class="tab active" id='btnBox' ">box</div>
+                    <div class="tab" id='btnLane'">lane</div>
+                </div>
+                
+                <div style="position:relative;">
+                    <!-- Box Videos -->
+                    <div class="image-row" id="box5">
+                        <div class="image-wrapper">
+                            <video width="100%" loop muted autoplay>
+                                <source src="supply1/combine_5box.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                    <div class="image-row" id="box27">
+                        <div class="image-wrapper">
+                            <video width="100%" loop muted autoplay>
+                                <source src="supply1/combine_27box.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                    <div class="image-row" id="box65">
+                        <div class="image-wrapper">
+                            <video width="100%" loop muted autoplay>
+                                <source src="supply1/combine_65box.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <!-- Lane Videos -->
+                    <div class="image-row hidden" id="lane5">
+                        <div class="image-wrapper">
+                            <video width="100%" loop muted autoplay>
+                                <source src="supply1/combine_5lane.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                    <div class="image-row hidden" id="lane27">
+                        <div class="image-wrapper">
+                            <video width="100%" loop muted autoplay>
+                                <source src="supply1/combine_27lane.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                    <div class="image-row hidden" id="lane65">
+                        <div class="image-wrapper">
+                            <video width="100%" loop muted autoplay>
+                                <source src="supply1/combine_65lane.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Degraded videos rendered under new trajectories and their restored videos from DriveRestorer
+                </h3>
+                
+              
+                <div class="text-center">
+                    <div style="position:relative;">
+                        <div class="image-row">
+                            <div class="image-wrapper">
+                                <video width="100%" loop muted autoplay>
+                                    <source src="restore/65combine.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <div class="image-row">
+                            <div class="image-wrapper">
+                                <video width="100%" loop muted autoplay>
+                                    <source src="restore/96combine.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+                        <div class="image-row">
+                            <div class="image-wrapper">
+                                <video width="100%" loop muted autoplay>
+                                    <source src="restore/5combine.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <figcaption class="text-center mt-2">
+                    Comparisons of novel trajectory renderings during speed change scenarios. The left column shows <b>PVG</b>, 
+                    <b><span>S<sup>3</sup>Gaussian</span></b>, and <b>Deformable-GS</b>, while the right column shows <b><em>DriveDreamer4D</em>-PVG</b>, 
+                    <b><em>DriveDreamer4D</em>-<span>S<sup>3</sup>Gaussian</span></b>, and <b><em>DriveDreamer4D</em>-Deformable-GS</b>.
+                </figcaption>
+            </div>
+        </div>
+
+
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>Citation</h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <pre>
+        @inproceedings{zhao2024drive,
+            title={ReconDreamer: World Models Are Effective Data Machines for 4D Driving Scene Representation},
+            author={Zhao, Guosheng and Ni, Chaojun and Wang, Xiaofeng and Zhu, Zheng and Zhang, Xueyang and Wang, Yida and Huang, Guan and Chen, Xinze and Wang, Boyuan and Zhang, Youyi and Mei, Wenjun and Wang, Xingang},
+            journal={arXiv preprint arXiv:2410.13571},
+            year={2024}
+        }
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3> 
+                <p class="text-justify">
+                    The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a> and <a href="https://jonbarron.info/mipnerf360/">Jon Barron</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('btnBox').addEventListener('click', function() {
+            // 移除所有tab的active类
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            // 添加当前tab的active类
+            this.classList.add('active');
+            
+            // 显示Box视频
+            document.querySelectorAll('.image-row[id^="box"]').forEach(video => video.classList.remove('hidden'));
+            // 隐藏Lane视频
+            document.querySelectorAll('.image-row[id^="lane"]').forEach(video => video.classList.add('hidden'));
+        });
+        
+        document.getElementById('btnLane').addEventListener('click', function() {
+            // 移除所有tab的active类
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            // 添加当前tab的active类
+            this.classList.add('active');
+            
+            // 显示Lane视频
+            document.querySelectorAll('.image-row[id^="lane"]').forEach(video => video.classList.remove('hidden'));
+            // 隐藏Box视频
+            document.querySelectorAll('.image-row[id^="box"]').forEach(video => video.classList.add('hidden'));
+        });
+        </script>
+</body>
+
+</html>
