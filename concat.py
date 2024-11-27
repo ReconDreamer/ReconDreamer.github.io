@@ -9,9 +9,9 @@ def combine_videos_horizontally(input_video1_path, input_video2_path, output_vid
     if clip1.fps != clip2.fps:
         clip2 = clip2.set_fps(clip1.fps)
     
-    if clip1.size != clip2.size:
-        clip2 = clip2.resize((640,960))
-        clip1 = clip1.resize((640,960))
+
+    clip2 = clip2.resize((960,640))
+    clip1 = clip1.resize((960,640))
     
     # 左右拼接视频
     final_clip = clips_array([[clip1, clip2]])
@@ -22,8 +22,10 @@ def combine_videos_horizontally(input_video1_path, input_video2_path, output_vid
 # 调用函数
 for type in ['box','lane']:
     for data in ['5','27','65']:
-        input_video1_path = f'box-lane\\baseline{data}{type}6.mp4'
-        input_video2_path = f'box-lane\\{data}{type}6.mp4'
-        output_video_path = f'box-lane\\combine_{data}{type}.mp4'
+        input_video1_path = f'supply1/1.5_org_part2.mp4'
+        input_video2_path = f'supply1/1.5_20_r.mp4'
+        output_video_path = f'restore/81combine.mp4'
 
         combine_videos_horizontally(input_video1_path, input_video2_path, output_video_path)
+        break
+    break

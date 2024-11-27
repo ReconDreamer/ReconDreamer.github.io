@@ -106,71 +106,41 @@
 
         </div>
         <div class="row">
-            <div class="col-md-12 text-center">
-                <ul class="list-inline">
-                    <li>
-                        Guosheng Zhao<sup>1,2</sup>
-                    </li>
-                    <li>
-                        Chaojun Ni<sup>1,4</sup>
-                    </li>
-                    <li>
-                        Xiaofeng Wang<sup>1,2</sup>
-                    </li>
-                    <li>
-                        Zheng Zhu<sup>1</sup><span class="envelope">&#9993;</span>
-                    </li>
-                </ul>
-                <ul class="list-inline">
-                    <li>
-                      Xueyang Zhang<sup>3</sup>
-                    </li>
-                    <li>
-                      Yida Wang<sup>3</sup>
-                    </li>
-                    <li>
-                        Guan Huang<sup>1</sup>
-                    </li>
-                    <li>
-                        Xinze Chen<sup>1</sup>
-                    </li>
-                    <li>
-                        Boyuan Wang<sup>1,2</sup>
-                    </li>
-                </ul>
-                <ul class="list-inline">
-                    <li>
-                      Youyi Zhang<sup>5</sup>
-                    </li>
-                    <li>
-                        Wenjun Mei<sup>4</sup>
-                    </li>
-                    <li>
-                        Xingang Wang<sup>2</sup><span class="envelope">&#9993;</span>
-                    </li>
-                </ul>
-                
-                <ul class="list-inline">
-                    <li>
-                        <sup>1</sup> GigaAI
-                    </li>
-                    <li>
-                        <sup>2</sup> Institute of Automation, Chinese Academy of Sciences
-                    </li>
-                </ul>
-                <ul class="list-inline">
-                    <li>
-                      <sup>3</sup> Li Auto Inc.
-                    </li>
-                    <li>
-                        <sup>4</sup> Peking University
-                    </li>
-                    <li>
-                        <sup>5</sup> Technical University of Munich
-                    </li>
-                </ul>
-            </div>
-        </div>
+      <div class="col-md-12 text-center">
+        <ul class="list-inline">
+          <li>Chaojun Ni<sup>1,2</sup></li>
+          <li>Guosheng Zhao<sup>1,3</sup></li>
+          <li>Xiaofeng Wang<sup>1,3</sup></li>
+          <li>Zheng Zhu<sup>1</sup><span class="envelope">&#9993;</span></li>
+        </ul>
+        <ul class="list-inline">
+          <li>Wenkang Qin<sup>1</sup></li>
+          <li>Guan Huang<sup>1</sup></li>
+          <li>Chen Liu<sup>4</sup></li>
+          <li>Yuyin Chen<sup>4</sup></li>
+          <li>Yida Wang<sup>4</sup></li>
+        </ul>
+        <ul class="list-inline">
+          <li>Xueyang Zhang<sup>4</sup></li>
+          <li>Yifei Zhan<sup>4</sup></li>
+          <li>Kun Zhan<sup>4</sup></li>
+          <li>Peng Jia<sup>4</sup></li>
+          <li>Xianpeng Lang<sup>4</sup></li>
+        </ul>
+        <ul class="list-inline">
+          <li>Xingang Wang<sup>3</sup><span class="envelope">&#9993;</span></li>
+          <li>Wenjun Mei<sup>2</sup></li>
+        </ul>
+        <ul class="list-inline">
+          <li><sup>1</sup> GigaAI</li>
+          <li><sup>2</sup> Peking University</li>
+        </ul>
+        <ul class="list-inline">
+          <li><sup>3</sup> Institute of Automation, Chinese Academy of Sciences</li>
+          <li><sup>4</sup> Li Auto Inc.</li>
+        </ul>
+      </div>
+    </div>
 
 
         <div class="row">
@@ -178,7 +148,7 @@
                 <ul class="nav nav-pills nav-justified" style="margin-top:10px">
                 <li>
                     <a href=https://arxiv.org/abs/2410.13571>
-                    <image src="./img/DriveDreamer4D-6_00.png" height="60px"></image>
+                    <image src="./img/ReconDreamer.png" height="60px"></image>
                         <h4><strong>Paper</strong></h4>
                     </a>
                 </li>
@@ -529,11 +499,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Comparisons
+                    Visualizing Object and Lane Detection
                 </h3>
                 <div class="tabs">
-                    <div class="tab active" id='btnBox' ">box</div>
-                    <div class="tab" id='btnLane'">lane</div>
+                    <div class="tab active" id='btnBox'>Object Detection Comparison</div>
+                    <div class="tab" id='btnLane'>Lane Detection Comparison</div>
                 </div>
                 
                 <div style="position:relative;">
@@ -541,21 +511,21 @@
                     <div class="image-row" id="box5">
                         <div class="image-wrapper">
                             <video width="100%" loop muted autoplay>
-                                <source src="supply1/combine_5box.mp4" type="video/mp4" />
+                                <source src="box-lane-compare/combine_5box.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
                     <div class="image-row" id="box27">
                         <div class="image-wrapper">
                             <video width="100%" loop muted autoplay>
-                                <source src="supply1/combine_27box.mp4" type="video/mp4" />
+                                <source src="box-lane-compare/combine_27box.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
                     <div class="image-row" id="box65">
                         <div class="image-wrapper">
                             <video width="100%" loop muted autoplay>
-                                <source src="supply1/combine_65box.mp4" type="video/mp4" />
+                                <source src="box-lane-compare/combine_65box.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
@@ -564,21 +534,21 @@
                     <div class="image-row hidden" id="lane5">
                         <div class="image-wrapper">
                             <video width="100%" loop muted autoplay>
-                                <source src="supply1/combine_5lane.mp4" type="video/mp4" />
+                                <source src="box-lane-compare/combine_5lane.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
                     <div class="image-row hidden" id="lane27">
                         <div class="image-wrapper">
                             <video width="100%" loop muted autoplay>
-                                <source src="supply1/combine_27lane.mp4" type="video/mp4" />
+                                <source src="box-lane-compare/combine_27lane.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
                     <div class="image-row hidden" id="lane65">
                         <div class="image-wrapper">
                             <video width="100%" loop muted autoplay>
-                                <source src="supply1/combine_65lane.mp4" type="video/mp4" />
+                                <source src="box-lane-compare/combine_65lane.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
@@ -615,7 +585,7 @@
                         <div class="image-row">
                             <div class="image-wrapper">
                                 <video width="100%" loop muted autoplay>
-                                    <source src="restore/5combine.mp4" type="video/mp4" />
+                                    <source src="restore/81combine.mp4" type="video/mp4" />
                                 </video>
                             </div>
                         </div>

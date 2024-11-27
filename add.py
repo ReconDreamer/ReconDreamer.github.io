@@ -1,10 +1,11 @@
 import cv2
 
 # 视频参数
-where_list = ['combined_05_3.mp4','combined_05_6.mp4','combined_05_9.mp4','combined_18_3.mp4','combined_18_6.mp4','combined_18_9.mp4','combined_27_3.mp4','combined_27_6.mp4','combined_27_9.mp4','combined_164_3.mp4','combined_164_6.mp4','combined_164_9.mp4']
+where_list = ['combine_5box.mp4','combine_27box.mp4','combine_65box.mp4'
+              ,'combine_5lane.mp4','combine_27lane.mp4','combine_65lane.mp4']
 for where in where_list:
-    output_path = f'supply1/{where}'  # 输出视频路径
-    video_path = f'supply/{where}'  # 输入视频路径
+    output_path = f'box-lane-compare/{where}'  # 输出视频路径
+    video_path = f'supply1/{where}'  # 输入视频路径
     h = 640  # 高度
     w = 1920  # 宽度
 
@@ -38,7 +39,7 @@ for where in where_list:
     fps = cap.get(cv2.CAP_PROP_FPS)
 
     # 创建VideoWriter对象
-    fourcc = cv2.VideoWriter_fourcc(*'avc1')
+    fourcc = cv2.VideoWriter_fourcc(*'avc1')  # 使用 XVID 编码器
     out = cv2.VideoWriter(output_path, fourcc, fps, (w, h))
 
     while cap.isOpened():
