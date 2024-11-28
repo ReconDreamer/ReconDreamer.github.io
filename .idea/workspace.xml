@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f25d8023-068d-4a9e-84d8-a2201a87dbcb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/comparsion/164_gtt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/18_gt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/18_gtt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/27_gt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/27_gtt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/base164_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/base164_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/base18_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/base18_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/base27_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/base27_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/base27_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/combined_164_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/combined_164_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/combined_18_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/combined_18_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/combined_27_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/combined_27_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/combined_27_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/our164_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/our164_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/our18_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/our18_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/our27_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/our27_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/comparsion/recon_27_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/concat.py" beforeDir="false" afterPath="$PROJECT_DIR$/concat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/000010_0_train_gt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/000015_0_train_gt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/000018_0_train.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/000018_0_train_gt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/000092_0_train_gt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/5_gtt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/5after.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/5before.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/after5.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/restore/after5.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restore/before5.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/restore/before5.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/164_gtt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/18_gtt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/27_gtt.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/5.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base05_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base05_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base05_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base164_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base164_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base164_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base18_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base18_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base18_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base27_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base27_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/base27_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_05_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_05_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_05_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_164_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_164_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_164_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_18_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_18_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_18_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_27_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_27_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/combined_27_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our05_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our05_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our05_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our164_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our164_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our164_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our18_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our18_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our18_9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our27_3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our27_6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supply/our27_9.mp4" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2pQqyV4LFIeVS9EFJvu1EEtDGyr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="sortByType" value="true" />
+    <option name="sortKey" value="BY_TYPE" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Administrator/Documents/BeiK/12/ReconDreamer.github.io/img"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Documents\BeiK\12\ReconDreamer.github.io\img" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13135.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f25d8023-068d-4a9e-84d8-a2201a87dbcb" name="Changes" comment="" />
+      <created>1732708903878</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732708903878</updated>
+      <workItem from="1732708905201" duration="2244000" />
+    </task>
+    <servers />
+  </component>
+</project>
