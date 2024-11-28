@@ -14,21 +14,19 @@
     <meta property="og:image:width" content="1296">
     <meta property="og:image:height" content="840">
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="ReconDreamer: World Models Are Effective Data Machines for 4D Driving Scene Representation" />
+    <meta property="og:title" content="ReconDreamer: Crafting World Models for Driving Scene Reconstruction via Online Restoration" />
     <meta property="og:description" content="     
-     Closed-loop simulation is essential for advancing end-to-end autonomous driving systems. Contemporary sensor simulation methods, such as NeRF and 3DGS, rely predominantly on conditions closely aligned with training data distributions, which are largely confined to forward-driving scenarios. Consequently, these methods face limitations when rendering complex maneuvers (e.g., lane change, acceleration, deceleration). Recent advancements in autonomous-driving world models have demonstrated the potential to generate diverse driving videos. However, these approaches remain constrained to 2D video generation, inherently lacking the spatiotemporal coherence required to capture intricacies of dynamic driving environments.
-                            In this paper, we introduce <em>ReconDreamer</em>, which enhances 4D driving scene representation leveraging world model priors.
-                            Specifically, we utilize the world model as a data machine to synthesize novel trajectory videos based on real-world driving data. Notably, we explicitly leverage structured conditions to control the spatial-temporal consistency of foreground and background elements, thus the generated data adheres closely to traffic constraints. To our knowledge, <em>ReconDreamer</em> is the first to utilize video generation models for improving 4D reconstruction in driving scenarios.
-                            Experimental results reveal that <em>ReconDreamer</em> significantly enhances generation quality under novel trajectory views, achieving a relative improvement in FID by 24.5%, 39.0%, and 10.5% compared to PVG, S<sup>3</sup>Gaussian, and Deformable-GS. Moreover, <em>ReconDreamer</em> markedly enhances the spatiotemporal coherence of driving agents, which is verified by a comprehensive user study and the relative increases of 20.3%, 42.0%, and 13.7% in the NTA-IoU metric.
+    Closed-loop Simulation is Crucial for End-to-end Autonomous Driving. Existing sensor simulation methods (e.g., NeRF and 3DGS) reconstruct driving scenes based on conditions that closely mirror training data distributions. However, these methods struggle with rendering novel trajectories, such as lane changes. Recent work, DriveDreamer4D, has demonstrated that integrating world model knowledge alleviates these issues. Although the training-free integration approach is efficient, it still struggles to render larger maneuvers, such as multi-lane shifts.
+    Therefore, we introduce <strong>ReconDreamer</strong>, which enhances driving scene reconstruction through incremental integration of world model knowledge. Specifically, based on the world model, <em>DriveRestorer</em> is proposed to mitigate ghosting artifacts via online restoration. Additionally, we propose the progressive data update strategy to ensure high-quality rendering for larger maneuvers. Notably, <strong>ReconDreamer</strong> is the first method to effectively render in large maneuvers (e.g., across multiple lanes, spanning up to 6 meters).
+    Additionally, experimental results demonstrate that <strong>ReconDreamer</strong> outperforms Street Gaussians in the NTA-IoU, NTL-IoU, and FID, with a relative improvement by 24.87%, 6.72%, and 29.97%. Furthermore, <strong>ReconDreamer</strong> surpasses DriveDreamer4D with PVG during large maneuver rendering, as verified by a relative improvement of 195.87% in the NTA-IoU metric and a comprehensive user study.
     />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ReconDreamer: World Models Are Effective Data Machines for 4D Driving Scene Representation" />
-    <meta name="twitter:description" content="     
-     Closed-loop simulation is essential for advancing end-to-end autonomous driving systems. Contemporary sensor simulation methods, such as NeRF and 3DGS, rely predominantly on conditions closely aligned with training data distributions, which are largely confined to forward-driving scenarios. Consequently, these methods face limitations when rendering complex maneuvers (e.g., lane change, acceleration, deceleration). Recent advancements in autonomous-driving world models have demonstrated the potential to generate diverse driving videos. However, these approaches remain constrained to 2D video generation, inherently lacking the spatiotemporal coherence required to capture intricacies of dynamic driving environments.
-                            In this paper, we introduce <em>ReconDreamer</em>, which enhances 4D driving scene representation leveraging world model priors.
-                            Specifically, we utilize the world model as a data machine to synthesize novel trajectory videos based on real-world driving data. Notably, we explicitly leverage structured conditions to control the spatial-temporal consistency of foreground and background elements, thus the generated data adheres closely to traffic constraints. To our knowledge, <em>ReconDreamer</em> is the first to utilize video generation models for improving 4D reconstruction in driving scenarios.
-                            Experimental results reveal that <em>ReconDreamer</em> significantly enhances generation quality under novel trajectory views, achieving a relative improvement in FID by 24.5%, 39.0%, and 10.5% compared to PVG, S<sup>3</sup>Gaussian, and Deformable-GS. Moreover, <em>ReconDreamer</em> markedly enhances the spatiotemporal coherence of driving agents, which is verified by a comprehensive user study and the relative increases of 20.3%, 42.0%, and 13.7% in the NTA-IoU metric.
+    <meta name="twitter:title" content="ReconDreamer: Crafting World Models for Driving Scene Reconstruction  via Online Restoration" />
+    <meta name="twitter:description" content="                       
+    Closed-loop Simulation is Crucial for End-to-end Autonomous Driving. Existing sensor simulation methods (e.g., NeRF and 3DGS) reconstruct driving scenes based on conditions that closely mirror training data distributions. However, these methods struggle with rendering novel trajectories, such as lane changes. Recent work, DriveDreamer4D, has demonstrated that integrating world model knowledge alleviates these issues. Although the training-free integration approach is efficient, it still struggles to render larger maneuvers, such as multi-lane shifts.
+    Therefore, we introduce <strong>ReconDreamer</strong>, which enhances driving scene reconstruction through incremental integration of world model knowledge. Specifically, based on the world model, <em>DriveRestorer</em> is proposed to mitigate ghosting artifacts via online restoration. Additionally, we propose the progressive data update strategy to ensure high-quality rendering for larger maneuvers. Notably, <strong>ReconDreamer</strong> is the first method to effectively render in large maneuvers (e.g., across multiple lanes, spanning up to 6 meters).
+    Additionally, experimental results demonstrate that <strong>ReconDreamer</strong> outperforms Street Gaussians in the NTA-IoU, NTL-IoU, and FID, with a relative improvement by 24.87%, 6.72%, and 29.97%. Furthermore, <strong>ReconDreamer</strong> surpasses DriveDreamer4D with PVG during large maneuver rendering, as verified by a relative improvement of 195.87% in the NTA-IoU metric and a comprehensive user study.
     />
 
 
@@ -98,7 +96,7 @@
     <div class="container" id="main">
         <div class="row">
             <h2 class="col-md-12 text-center">
-                <b>ReconDreamer:</b>Crafting World Models for Driving Scene Reconstruction  via Online Restoration </br>            
+                <b>ReconDreamer:</b>Crafting World Models for Driving Scene Reconstruction via Online Restoration </br>            
             <small>
                 <!-- cvpr -->
             </small>
@@ -107,35 +105,37 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-              <ul class="list-inline">
-                <li>Chaojun Ni<sup>*</sup><sup>1,2</sup></li>
-                <li>Guosheng Zhao<sup>*</sup><sup>1,4</sup></li>
-                <li>Xiaofeng Wang<sup>*</sup><sup>1,4</sup></li>
-                <li>Zheng Zhu<sup>*</sup><sup>1</sup><span class="envelope">&#9993;</span></li>
-                <li>Wenkang Qin<sup>1</sup></li>
-                <li>Guan Huang<sup>1</sup></li>
-              </ul>
-              <ul class="list-inline">
-                <li>Chen Liu<sup>3</sup></li>
-                <li>Yuyin Chen<sup>3</sup></li>
-                <li>Yida Wang<sup>3</sup></li>
-                <li>Xueyang Zhang<sup>3</sup></li>
-                <li>Yifei Zhan<sup>3</sup></li>
-                <li>Kun Zhan<sup>3</sup></li>
-                <li>Peng Jia<sup>3</sup></li>
-                <li>Xianpeng Lang<sup>3</sup></li>
-              </ul>
-              <ul class="list-inline">
-                <li>Xingang Wang<sup>4</sup></li>
-                <li>Wenjun Mei<sup>2</sup><span class="envelope">&#9993;</span></li>
-              </ul>
-              <ul class="list-inline">
-                <li><sup>1</sup> GigaAI</li>
-                <li><sup>2</sup> Peking University</li>
-                <li><sup>3</sup> Li Auto Inc.</li>
-                <li><sup>4</sup> CASIA</li>
-              </ul>
-            </div>
+                <ul class="list-inline">
+                  <li>Chaojun Ni<sup>*</sup><sup>1,2</sup></li>
+                  <li>Guosheng Zhao<sup>*</sup><sup>1,4</sup></li>
+                  <li>Xiaofeng Wang<sup>*</sup><sup>1,4</sup></li>
+                  <li>Zheng Zhu<sup>*</sup><sup>1</sup><span class="envelope">&#9993;</span></li>
+                  <li>Wenkang Qin<sup>1</sup></li>
+                  <li>Guan Huang<sup>1</sup></li>
+                </ul>
+                <ul class="list-inline">
+                  <li>Chen Liu<sup>3</sup></li>
+                  <li>Yuyin Chen<sup>3</sup></li>
+                  <li>Yida Wang<sup>3</sup></li>
+                  <li>Xueyang Zhang<sup>3</sup></li>
+                  <li>Yifei Zhan<sup>3</sup></li>
+                  <li>Kun Zhan<sup>3</sup></li>
+                  <li>Peng Jia<sup>3</sup></li>
+                  <li>Xianpeng Lang<sup>3</sup></li>
+                </ul>
+                <ul class="list-inline">
+                  <li>Xingang Wang<sup>4</sup></li>
+                  <li>Wenjun Mei<sup>2</sup><span class="envelope">&#9993;</span></li>
+                </ul>
+                <ul class="list-inline">
+                  <li><sup>1</sup> GigaAI</li>
+                  <li><sup>2</sup> Peking University</li>
+                  <li><sup>3</sup> Li Auto Inc.</li>
+                  <li><sup>4</sup> CASIA</li>
+                </ul>
+              </div>
+    </div>
+
 
         <div class="row">
             <div class="col-md-4 col-md-offset-4 text-center">
@@ -240,7 +240,28 @@
                        
                     </div>
                 </div>
-            
+                
+                <div class="image-row" >
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq25_compare_video1_1" loop playsinline autoPlay muted 
+                                src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_video1_1Merge"></canvas>
+                        </div>
+                        
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_video1Div1" style="display: inline;">
+                            <video class="video" id="seq06_compare_video1_1" loop playsinline autoPlay muted 
+                                src="supply1/combined_164_3.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_video1_1Merge"></canvas>
+                        </div>
+                       
+                    </div>
+                </div>
                                 
                 <div class="image-row" >
                     <div class="image-wrapper">
@@ -286,28 +307,6 @@
                     </div>
                 </div>
 
-                <div class="image-row" >
-                    <div class="image-wrapper">
-                        <div class="video-compare-container" id="seq25_compare_video1Div1" style="display: inline;">
-                            <video class="video" id="seq25_compare_video1_1" loop playsinline autoPlay muted 
-                                src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
-                            </video>
-                            <canvas height=0 class="videoMerge" id="seq25_compare_video1_1Merge"></canvas>
-                        </div>
-                        
-                    </div>
-
-                    <div class="image-wrapper">
-                        <div class="video-compare-container" id="seq06_compare_video1Div1" style="display: inline;">
-                            <video class="video" id="seq06_compare_video1_1" loop playsinline autoPlay muted 
-                                src="supply1/combined_164_3.mp4" onplay="resizeAndPlay(this)">
-                            </video>
-                            <canvas height=0 class="videoMerge" id="seq06_compare_video1_1Merge"></canvas>
-                        </div>
-                       
-                    </div>
-                </div>
-
                 </div>
                 
                 
@@ -335,6 +334,25 @@
                                 src="supply1/combined_18_6.mp4" onplay="resizeAndPlay(this)">
                             </video>
                             <canvas height=0 class="videoMerge" id="seq06_compare_image1Merge"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-row">
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq25_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq25_compare_image1_1" loop playsinline autoPlay muted 
+                                src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq25_compare_image1_1Merge"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="image-wrapper">
+                        <div class="video-compare-container" id="seq06_compare_image1Div" style="display: none;">
+                            <video class="video" id="seq06_compare_image1_1" loop playsinline autoPlay muted 
+                                src="supply1/combined_164_6.mp4" onplay="resizeAndPlay(this)">
+                            </video>
+                            <canvas height=0 class="videoMerge" id="seq06_compare_image1_1Merge"></canvas>
                         </div>
                     </div>
                 </div>
@@ -377,25 +395,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="image-row">
-                    <div class="image-wrapper">
-                        <div class="video-compare-container" id="seq25_compare_image1Div" style="display: none;">
-                            <video class="video" id="seq25_compare_image1_1" loop playsinline autoPlay muted 
-                                src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
-                            </video>
-                            <canvas height=0 class="videoMerge" id="seq25_compare_image1_1Merge"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="image-wrapper">
-                        <div class="video-compare-container" id="seq06_compare_image1Div" style="display: none;">
-                            <video class="video" id="seq06_compare_image1_1" loop playsinline autoPlay muted 
-                                src="supply1/combined_164_6.mp4" onplay="resizeAndPlay(this)">
-                            </video>
-                            <canvas height=0 class="videoMerge" id="seq06_compare_image1_1Merge"></canvas>
-                        </div>
-                    </div>
-                </div>
                 </div>
 
                 <div>
@@ -422,6 +421,25 @@
                                     src="supply1/combined_18_9.mp4" onplay="resizeAndPlay(this)">
                                 </video>
                                 <canvas height=0 class="videoMerge" id="seq06_compare_image2Merge"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-row">
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq25_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq25_compare_image2_1" loop playsinline autoPlay muted 
+                                    src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq25_compare_image2_1Merge"></canvas>
+                            </div>
+                        </div>
+    
+                        <div class="image-wrapper">
+                            <div class="video-compare-container" id="seq06_compare_image2Div" style="display: none;">
+                                <video class="video" id="seq06_compare_image2_1" loop playsinline autoPlay muted 
+                                    src="supply1/combined_164_9.mp4" onplay="resizeAndPlay(this)">
+                                </video>
+                                <canvas height=0 class="videoMerge" id="seq06_compare_image2_1Merge"></canvas>
                             </div>
                         </div>
                     </div>
@@ -463,25 +481,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="image-row">
-                        <div class="image-wrapper">
-                            <div class="video-compare-container" id="seq25_compare_image2Div" style="display: none;">
-                                <video class="video" id="seq25_compare_image2_1" loop playsinline autoPlay muted 
-                                    src="supply1/164_gtt.mp4" onplay="resizeAndPlay(this)">
-                                </video>
-                                <canvas height=0 class="videoMerge" id="seq25_compare_image2_1Merge"></canvas>
-                            </div>
-                        </div>
-    
-                        <div class="image-wrapper">
-                            <div class="video-compare-container" id="seq06_compare_image2Div" style="display: none;">
-                                <video class="video" id="seq06_compare_image2_1" loop playsinline autoPlay muted 
-                                    src="supply1/combined_164_9.mp4" onplay="resizeAndPlay(this)">
-                                </video>
-                                <canvas height=0 class="videoMerge" id="seq06_compare_image2_1Merge"></canvas>
-                            </div>
-                        </div>
-                    </div>
+
                     </div>
                 
             </div>
@@ -607,8 +607,8 @@
                     </pre>
                 </div>
             </div>
-        </div>
-         -->
+        </div> -->
+        
 
 
     </div>
