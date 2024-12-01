@@ -260,3 +260,38 @@ background-size: cover;
 .example {
   display: none;
 }
+
+
+
+.video-container {
+  text-align: center;
+  margin-top: 30px; /* Add some space between the main title and the first video */
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.image-wrapper video {
+  width: 100%;
+  height: auto;
+}
+
+.caption-original, .caption-novel {
+  position: absolute;
+  top: -30px; /* Adjust as needed to avoid overlap with the main title */
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  z-index: 1; /* Ensure captions are on top of the video */
+}
+
+.caption-original {
+  left: 15%; /* Adjust this value to move the caption slightly to the left */
+}
+
+.caption-novel {
+  right: 15%; /* Adjust this value to move the caption slightly to the right */
+}
